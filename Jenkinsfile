@@ -2,7 +2,7 @@ pipeline {
   agent any
   
   tools {
-    java 'jdk17'
+    jdk 'jdk17'
   }
   stages {
     stage('Git Checkout'){
