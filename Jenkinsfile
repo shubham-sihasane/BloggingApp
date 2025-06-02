@@ -1,35 +1,32 @@
-pipeline { 
-    agent any
-    
-    tools {
-        maven 'Maven'
-        jdk 'JDK17'
+pipeline {
+  agent any
+  
+  tools {
+    java 'jdk17'
+  }
+  stages {
+    stage('Git Checkout'){
+      steps {
+        git branch: 'main', url: 'https://github.com/shubham-sihasane/BloggingApp.git'
+      }
     }
-
-    stages {
-        
-        stage('Compile') {
-            steps {
-            sh  "mvn compile"
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                sh "mvn test"
-            }
-        }
-        
-        stage('Package') {
-            steps {
-                sh "mvn package"
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                deploy adapters: [tomcat9(credentialsId: 'Tomcat-Credentials', path: '', url: 'http://13.233.25.147:8080/')], contextPath: 'fullstack', onFailure: false, war: 'target/*.jar'
-            }
-        }
+    stage('Compile') {
+      steps {
+        sh 'mvn compile'
+	echo "Application successfully compiled."
+      }
     }
+    stage('Test'){
+      steps {
+	sh 'mvn test'
+	echo "Application testing sucessfully completed."
+      }
+    }
+    stage('Package'){
+      steps {
+	sh 'mvn package'
+        echo "Application packaged successfully."
+      }
+    }
+  }
 }
