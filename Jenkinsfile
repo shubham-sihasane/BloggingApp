@@ -7,7 +7,7 @@ pipeline {
     maven 'maven3'
   }
 
-  parameter {
+  parameters {
     string (name: 'BRANCH_NAME', defaultValue: 'main', description: 'Select a branch to build and deploy application')
   }
 	
