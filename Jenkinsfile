@@ -8,7 +8,8 @@ pipeline {
   }
 
   parameters {
-    string (name: 'BRANCH_NAME', defaultValue: 'main', description: 'Select a branch to build and deploy application')
+    //string (name: 'BRANCH_NAME', defaultValue: 'main', description: 'Select a branch to build and deploy application')
+    choice (name: 'BRANCH_NAME', choices: ['main','dev','feature'], description: 'Select a branch to build and deploy')
   }
 	
   stages {
