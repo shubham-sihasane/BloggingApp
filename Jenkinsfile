@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Git Checkout'){
       steps {
-        git branch: 'main', url: 'https://github.com/shubham-sihasane/BloggingApp.git'
+        git branch: "${params.BRANCH_NAME}", url: 'https://github.com/shubham-sihasane/BloggingApp.git'
       }
     }
     stage('Compile') {
