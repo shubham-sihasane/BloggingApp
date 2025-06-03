@@ -6,6 +6,11 @@ pipeline {
     jdk 'jdk17'
     maven 'maven3'
   }
+
+  parameter {
+    string (name: 'BRANCH_NAME', defaultValue: 'main', description: 'Select a branch to build and deploy application')
+  }
+	
   stages {
     stage('Git Checkout'){
       steps {
